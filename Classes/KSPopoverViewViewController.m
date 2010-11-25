@@ -101,4 +101,18 @@
 	}
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	// 上のボタンビューがイベントを拾っているため、ここには来ない
+	NSLog(@"began %@", event);
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	// 上のボタンビューがイベントを拾っているため、ここには来ない
+	NSLog(@"began %@", event);
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	// 上のボタンビューがイベントを拾っているため、ここには来ない
+	NSLog(@"began %@", event);
+}
 @end
