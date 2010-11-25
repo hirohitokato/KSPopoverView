@@ -7,31 +7,17 @@
 //
 
 #import "KSPopoverViewViewController.h"
+#import "KSPopoverViewController.h"
 
 @implementation KSPopoverViewViewController
-
-
-
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[parentButton setTitle:@"touch me" forState:UIControlStateNormal];
+	KSPopoverViewController *vc = [[KSPopoverViewController alloc] initWithNibName:nil
+																			bundle:nil];
+	[self.view addSubview:vc.view];
 	//childButtons1.hidden = YES;
 	//childButtons2.hidden = YES;
 }
@@ -101,18 +87,4 @@
 	}
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	// 上のボタンビューがイベントを拾っているため、ここには来ない
-	NSLog(@"began %@", event);
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-	// 上のボタンビューがイベントを拾っているため、ここには来ない
-	NSLog(@"began %@", event);
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	// 上のボタンビューがイベントを拾っているため、ここには来ない
-	NSLog(@"began %@", event);
-}
 @end
