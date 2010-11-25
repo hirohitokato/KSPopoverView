@@ -1,0 +1,44 @@
+//
+// Prefix header for all source files of the 'KSPopoverView' target in the 'KSPopoverView' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+// 下記マクロが定義されているときのみ有効になる
+#define KS_DEBUG_LIB
+#if defined(KS_DEBUG_LIB)
+
+// 一般的なログ出力
+#define KSLog(fmt, ...) \
+NSLog((@"<%s/%d> " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+// ワーニング出力
+#define KSWarning(fmt, ...) \
+NSLog((@"<%s/%d> [WARNING]" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+// エラー出力
+#define KSError(fmt, ...) \
+NSLog((@"<%s/%d> [ERROR]" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+// CGRect型のログ情報出力
+#define KSLog_CGRect(/* NSString* */text, /* CGRect */rect)				\
+do {																\
+NSLog(@"<%s/%d> CGRect(%@) = {x:%.2f, y:%.2f, w:%.2f, h:%.2f}", \
+__PRETTY_FUNCTION__, __LINE__,								\
+(text), (rect).origin.x, (rect).origin.y,					\
+(rect).size.width, (rect).size.height);						\
+} while(0);
+
+#else // defined(KS_DEBUG_LIB)
+
+// デバッグマクロが定義されていない場合は無効化
+#define KSLog(fmt, ...)
+#define KSWarning(fmt, ...)
+#define KSError(fmt, ...)
+
+#define KSLog_CGRect(/* NSString* */text, /* CGRect */rect)
+
+#endif // defined(KS_DEBUG_LIB)
+
+#endif
