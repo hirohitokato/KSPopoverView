@@ -8,14 +8,33 @@
 
 #import <UIKit/UIKit.h>
 
-@class KSPopoverParentButton;
+typedef enum {
+	KSPopoverStateNormal = 0,
+	KSPopoverStateOpened,
+} KSPopoverState;
+
+typedef enum {
+	KSPopoverEventTouchesBegan = 0,
+	KSPopoverEventTouchesMoved,
+	KSPopoverEventTouchesEnded,
+} KSPopoverEventType;
 
 @interface KSPopoverViewController : UIViewController {
-	NSMutableArray *childs;
-
-	KSPopoverParentButton *parentButton;
+	@private
+	// メニュー内の子要素
+	NSMutableArray *_childs;
+	
+	// 通常時、広がったときのサイズ
+	CGRect _normalFrame;
+	CGRect _openedFrame;
+	KSPopoverState _state;
+	
+	// ユーザーに見せるボタン相当
+	UILabel *_button;
 }
 
-@property (nonatomic, retain)KSPopoverParentButton *parentButton;
+@property (nonatomic, retain)UILabel *button;
 @property (nonatomic, retain)NSMutableArray *childs;
+
+- (void)setFrame:(CGRect)rect forState:(KSPopoverState)state;
 @end
