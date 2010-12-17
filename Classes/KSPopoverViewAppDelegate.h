@@ -2,7 +2,6 @@
 //  KSPopoverViewAppDelegate.h
 //  KSPopoverView
 //
-//  Created by 加藤寛人 on 10/11/19.
 //  Copyright 2010 Katokichi Software. All rights reserved.
 //
 

@@ -1,12 +1,12 @@
-    //
+//
 //  KSPopoverViewController.m
 //  KSPopoverView
 //
-//  Created by 加藤 寛人 on 10/11/25.
 //  Copyright 2010 KatokichiSoft. All rights reserved.
 //
 
 #import "KSPopoverViewController.h"
+#import "KSPopoverViewButtonLabel.h"
 
 @interface KSPopoverViewController (private)
 - (void)forwardTouches:(NSSet *)touches withEventType:(KSPopoverEventType)type;
@@ -25,6 +25,7 @@
 	
 	_normalFrame = CGRectMake(100.0f, 300.0f, 100.0f, 50.0f);
 	_openedFrame = CGRectMake(100.0f, 100.0f, 120.0f, 250.0f);
+
 	self.view.frame = _normalFrame;
 	self.view.backgroundColor = [UIColor redColor];
 	self.view.multipleTouchEnabled = YES;
@@ -46,6 +47,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+#pragma mark KSPopoverViewButtonBaseのテスト
+#if 1
+	KSPopoverViewButtonLabel *b = [[[KSPopoverViewButtonLabel alloc] initWithFrame:CGRectZero]
+								  autorelease];
+	[b setObject:@"hoge" forState:KSPopoverEventTouchesBegan];
+	NSAssert([@"hoge" isEqualToString:[b objectForState:KSPopoverEventTouchesBegan]], @"mismatch");
+	[b setObject:@"fuga" forState:KSPopoverEventTouchesMoved];
+	NSAssert([@"fuga" isEqualToString:[b objectForState:KSPopoverEventTouchesMoved]], @"mismatch");
+	[b setObject:@"moga" forState:KSPopoverEventTouchesEnded];
+	NSAssert([@"moga" isEqualToString:[b objectForState:KSPopoverEventTouchesEnded]], @"mismatch");
+	[b setObject:@"moga" forState:KSPopoverEventTouchesBegan];
+	NSAssert([@"moga" isEqualToString:[b objectForState:KSPopoverEventTouchesBegan]], @"mismatch");
+	[b handleTouchAtPoint:CGPointZero withState:KSPopoverEventTouchesBegan];
+#endif
 }
 
 /*

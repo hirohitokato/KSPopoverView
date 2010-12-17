@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A1F1C3812BB4B5600A4608A /* KSPopoverViewButtonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1F1C3712BB4B5600A4608A /* KSPopoverViewButtonBase.m */; };
+		1A1F1C6F12BB597F00A4608A /* KSPopoverViewButtonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1F1C6E12BB597F00A4608A /* KSPopoverViewButtonLabel.m */; };
 		1D3623260D0F684500981E51 /* KSPopoverViewAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KSPopoverViewAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -19,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A1F1C3612BB4B5600A4608A /* KSPopoverViewButtonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewButtonBase.h; sourceTree = "<group>"; };
+		1A1F1C3712BB4B5600A4608A /* KSPopoverViewButtonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewButtonBase.m; sourceTree = "<group>"; };
+		1A1F1C6D12BB597F00A4608A /* KSPopoverViewButtonLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewButtonLabel.h; sourceTree = "<group>"; };
+		1A1F1C6E12BB597F00A4608A /* KSPopoverViewButtonLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewButtonLabel.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KSPopoverViewAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KSPopoverViewAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewAppDelegate.m; sourceTree = "<group>"; };
@@ -59,6 +65,10 @@
 				28D7ACF70DDB3853001CB0EB /* KSPopoverViewViewController.m */,
 				91FA3387129E9D350075A341 /* KSPopoverViewController.h */,
 				91FA3388129E9D350075A341 /* KSPopoverViewController.m */,
+				1A1F1C3612BB4B5600A4608A /* KSPopoverViewButtonBase.h */,
+				1A1F1C3712BB4B5600A4608A /* KSPopoverViewButtonBase.m */,
+				1A1F1C6D12BB597F00A4608A /* KSPopoverViewButtonLabel.h */,
+				1A1F1C6E12BB597F00A4608A /* KSPopoverViewButtonLabel.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -177,6 +187,8 @@
 				1D3623260D0F684500981E51 /* KSPopoverViewAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* KSPopoverViewViewController.m in Sources */,
 				91FA3389129E9D350075A341 /* KSPopoverViewController.m in Sources */,
+				1A1F1C3812BB4B5600A4608A /* KSPopoverViewButtonBase.m in Sources */,
+				1A1F1C6F12BB597F00A4608A /* KSPopoverViewButtonLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

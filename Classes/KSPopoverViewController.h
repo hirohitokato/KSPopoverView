@@ -2,22 +2,16 @@
 //  KSPopoverViewController.h
 //  KSPopoverView
 //
-//  Created by 加藤 寛人 on 10/11/25.
 //  Copyright 2010 KatokichiSoft. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "KSPopoverViewButtonBase.h"
 
 typedef enum {
 	KSPopoverStateNormal = 0,
 	KSPopoverStateOpened,
 } KSPopoverState;
-
-typedef enum {
-	KSPopoverEventTouchesBegan = 0,
-	KSPopoverEventTouchesMoved,
-	KSPopoverEventTouchesEnded,
-} KSPopoverEventType;
 
 @interface KSPopoverViewController : UIViewController {
 	@private
