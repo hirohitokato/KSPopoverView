@@ -13,7 +13,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[parentButton setTitle:@"touch me" forState:UIControlStateNormal];
 	KSPopoverViewController *vc = [[KSPopoverViewController alloc] initWithNibName:nil
 																			bundle:nil];
 	[self.view addSubview:vc.view];

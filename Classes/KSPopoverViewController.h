@@ -13,6 +13,8 @@ typedef enum {
 	KSPopoverStateOpened,
 } KSPopoverState;
 
+@protocol KSPopoverViewControllerDelegate;
+
 @interface KSPopoverViewController : UIViewController {
 	@private
 	// メニュー内の子要素
@@ -25,10 +27,20 @@ typedef enum {
 	
 	// ユーザーに見せるボタン相当
 	UILabel *_button;
+	
+	id<KSPopoverViewControllerDelegate> _delegate;
 }
 
-@property (nonatomic, retain)UILabel *button;
-@property (nonatomic, retain)NSMutableArray *childs;
+@property(nonatomic, retain) UILabel *button;
+@property(retain) NSMutableArray *childs;
+@property(nonatomic, assign) id<KSPopoverViewControllerDelegate> delegate;
 
 - (void)setFrame:(CGRect)rect forState:(KSPopoverState)state;
+- (NSInteger)addButtonWithTitle:(NSString *)title;
 @end
+
+@protocol KSPopoverViewControllerDelegate
+@optional
+- (void)popoverViewController:(KSPopoverViewController *)controller clickedButtonAtIndex:(NSInteger)buttonIndex;
+@end
+

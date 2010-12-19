@@ -6,10 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KSPopoverParentButton.h"
 
 @interface KSPopoverViewViewController : UIViewController {
-	IBOutlet KSPopoverParentButton *parentButton;
 	IBOutlet UIButton *childButtons1;
 	IBOutlet UIButton *childButtons2;
 }

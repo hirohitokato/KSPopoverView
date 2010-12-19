@@ -8,7 +8,7 @@
 #import "KSPopoverViewButtonLabel.h"
 
 @interface KSPopoverViewButtonLabel (private)
-- (BOOL)isOnPoint:(CGPoint)point;
+- (BOOL)containsPoint:(CGPoint)point;
 @end
 
 @implementation KSPopoverViewButtonLabel
@@ -23,28 +23,51 @@
     return self;
 }
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code.
- }
- */
+- (void)drawRect:(CGRect)rect {
+	NSLog(@"drawRect is called.");
+	if (super.selected) {
+		// 選択中状態の表示
+	} else {
+		// 選択中状態の表示
+	}
+}
 
 - (void)dealloc {
     [super dealloc];
 }
 
 - (BOOL)handleTouchAtPoint:(CGPoint)point withState:(KSPopoverEventType)type {
-	BOOL isIn = [self isOnPoint:point];
+	BOOL isIn = [self containsPoint:point];
 	if (isIn) {
 		// ここでイベント処理
+		if ([type isEqualToString:KSPopoverEventTouchesBegan]) {
+			super.selected = YES;
+			// Touch downイベントの発生
+
+		} else if ([type isEqualToString:KSPopoverEventTouchesMoved]) {
+			if (super.selected == NO) {
+				super.selected = YES;
+				// Touch downイベントの発生
+
+			}
+		} else if ([type isEqualToString:KSPopoverEventTouchesEnded]) {
+			super.selected = NO;
+			// Touch upイベントの発生
+
+		}
+	} else {
+		if ([type isEqualToString:KSPopoverEventTouchesMoved]) {
+			if (super.selected == YES) {
+				super.selected = NO;
+				// Touch cancelledイベントの発生
+			}
+		}
 	}
-	NSLog(@"result: %@", isIn?@"handled":@"ignored");
+
 	return isIn;
 }
 
-- (BOOL)isOnPoint:(CGPoint)point {
+- (BOOL)containsPoint:(CGPoint)point {
     if (self.hidden==NO && CGRectContainsPoint(self.frame, point)) {
 		return YES;
     } else {

@@ -7,7 +7,6 @@
 
 #import "KSPopoverViewButtonBase.h"
 
-
 @implementation KSPopoverViewButtonBase
 @synthesize selected=_selected;
 
