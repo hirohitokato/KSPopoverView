@@ -36,8 +36,37 @@
 }
 
 - (BOOL)handleTouchAtPoint:(CGPoint)point withState:(KSPopoverEventType)type {
-	NSLog(@"Warning: This method should be override by child class!!");
-	return NO;
+	BOOL isIn = [self containsPoint:point];
+	if (isIn) {
+		// ここでイベント処理
+		if ([type isEqualToString:KSPopoverEventTouchesBegan]) {
+			self.selected = YES;
+			// Touch downイベントの発生
+			[self setNeedsDisplay];
+			
+		} else if ([type isEqualToString:KSPopoverEventTouchesMoved]) {
+			if (self.selected == NO) {
+				self.selected = YES;
+				// Touch downイベントの発生
+				[self setNeedsDisplay];
+				
+			}
+		} else if ([type isEqualToString:KSPopoverEventTouchesEnded]) {
+			self.selected = NO;
+			// Touch upイベントの発生
+			[self setNeedsDisplay];
+		}
+	} else {
+		if ([type isEqualToString:KSPopoverEventTouchesMoved]) {
+			if (self.selected == YES) {
+				self.selected = NO;
+				// Touch cancelledイベントの発生
+				[self setNeedsDisplay];
+			}
+		}
+	}
+	
+	return isIn;
 }
 
 // protected method
@@ -47,6 +76,15 @@
 // protected method
 - (id)objectForState:(KSPopoverEventType)type {
 	return [_objectsForState objectForKey:type];
+}
+
+// protected
+- (BOOL)containsPoint:(CGPoint)point {
+    if (self.hidden==NO && CGRectContainsPoint(self.frame, point)) {
+		return YES;
+    } else {
+		return NO;
+	}
 }
 
 @end

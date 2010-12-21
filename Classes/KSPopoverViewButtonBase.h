@@ -28,5 +28,6 @@ typedef NSString* KSPopoverEventType;
 // 各状態で表示させる情報などに利用。使い方は子クラスに任せる
 - (void)setObject:(id)obj forState:(KSPopoverEventType)type;
 - (id)objectForState:(KSPopoverEventType)type;
+- (BOOL)containsPoint:(CGPoint)point;
 
 @end

@@ -7,10 +7,14 @@
 #import "KSCGUtils.h"
 #import "UIColor-Expanded.h"
 
+static void pathRoundRect(CGRect rect, CGFloat radius, CGContextRef context);
+static float perceptualGlossFractionForColor(float *inputComponents);
+static void perceptualCausticColorForColor(float *inputComponents, float *outputComponents);
+static void pathRoundRect(CGRect rect, CGFloat radius, CGContextRef context);
+
 @implementation KSCGUtils
 
-float perceptualGlossFractionForColor(float *inputComponents)
-{
+float perceptualGlossFractionForColor(float *inputComponents) {
     const float REFLECTION_SCALE_NUMBER = 0.2;
     const float NTSC_RED_FRACTION = 0.299;
     const float NTSC_GREEN_FRACTION = 0.587;
@@ -25,8 +29,7 @@ float perceptualGlossFractionForColor(float *inputComponents)
 }
 
 void perceptualCausticColorForColor(float *inputComponents,
-									float *outputComponents)
-{
+									float *outputComponents) {
     const float CAUSTIC_FRACTION = 0.60;
     const float COSINE_ANGLE_SCALE = 1.4;
     const float MIN_RED_THRESHOLD = 0.95;
@@ -79,8 +82,7 @@ void perceptualCausticColorForColor(float *inputComponents,
     }
 }
 
-typedef struct
-{
+typedef struct {
     CGFloat color[4];
     CGFloat caustic[4];
     CGFloat expCoefficient;
@@ -90,9 +92,8 @@ typedef struct
     CGFloat finalWhite;
 } GlossParameters;
 
-static void glossInterpolation(void *info, const float *input,
-							   float *output)
-{
+void glossInterpolation(void *info, const float *input,
+							   float *output) {
     GlossParameters *params = (GlossParameters *)info;
 	
     float progress = *input;
@@ -109,9 +110,7 @@ static void glossInterpolation(void *info, const float *input,
         output[1] = params->color[1] * (1.0 - currentWhite) + currentWhite;
         output[2] = params->color[2] * (1.0 - currentWhite) + currentWhite;
         output[3] = params->color[3] * (1.0 - currentWhite) + currentWhite;
-    }
-    else
-    {
+    } else {
         progress = (progress - 0.5) * 2.0;
 		
         progress = params->expScale *
@@ -122,6 +121,23 @@ static void glossInterpolation(void *info, const float *input,
         output[2] = params->color[2] * (1.0 - progress) + params->caustic[2] * progress;
         output[3] = params->color[3] * (1.0 - progress) + params->caustic[3] * progress;
     }
+}
+
+void pathRoundRect(CGRect rect, CGFloat radius, CGContextRef context) {
+
+	CGFloat lx = CGRectGetMinX(rect);
+	CGFloat cx = CGRectGetMidX(rect);
+	CGFloat rx = CGRectGetMaxX(rect);
+	CGFloat by = CGRectGetMinY(rect);
+	CGFloat cy = CGRectGetMidY(rect);
+	CGFloat ty = CGRectGetMaxY(rect);
+	
+	CGContextMoveToPoint(context, lx, cy);
+	CGContextAddArcToPoint(context, lx, by, cx, by, radius);
+	CGContextAddArcToPoint(context, rx, by, rx, cy, radius);
+	CGContextAddArcToPoint(context, rx, ty, cx, ty, radius);
+	CGContextAddArcToPoint(context, lx, ty, lx, cy, radius);
+	CGContextClosePath(context);
 }
 
 + (void)drawGlossGradient:(CGContextRef)context
@@ -141,8 +157,7 @@ static void glossInterpolation(void *info, const float *input,
 	for (int i=0; i<CGColorGetNumberOfComponents(color.CGColor); i++) {
 		params.color[i] = CGColorGetComponents(color.CGColor)[i];
 	}
-    if (CGColorGetNumberOfComponents(color.CGColor) == 3)
-    {
+    if (CGColorGetNumberOfComponents(color.CGColor) == 3) {
         params.color[3] = 1.0;
     }
     
@@ -157,16 +172,13 @@ static void glossInterpolation(void *info, const float *input,
     static const float output_value_ranges[8] = {0, 1, 0, 1, 0, 1, 0, 1};
     CGFunctionCallbacks callbacks = {0, glossInterpolation, NULL};
     
-    CGFunctionRef gradientFunction = CGFunctionCreate(
-													  (void *)&params,
+    CGFunctionRef gradientFunction = CGFunctionCreate((void *)&params,
 													  1, // number of input values to the callback
 													  input_value_range,
 													  4, // number of components (r, g, b, a)
 													  output_value_ranges,
 													  &callbacks);
     
-    // CGPoint startPoint = CGPointMake(CGRectGetMinX(inRect), CGRectGetMaxY(inRect));
-    // CGPoint endPoint = CGPointMake(CGRectGetMinX(inRect), CGRectGetMinY(inRect));
     CGPoint startPoint = CGPointMake(CGRectGetMinX(inRect), CGRectGetMinY(inRect));
     CGPoint endPoint = CGPointMake(CGRectGetMinX(inRect), CGRectGetMaxY(inRect));
 	
@@ -185,4 +197,19 @@ static void glossInterpolation(void *info, const float *input,
 	return;
 }
 
++ (void)clipRoundRect:(CGRect)rect
+		   withRadius:(CGFloat)radius
+			inContext:(CGContextRef)context {
+
+	pathRoundRect(rect, radius, context);
+	CGContextClip(context);
+}
+
++ (void)drawRoundRect:(CGRect)rect
+		   withRadius:(CGFloat)radius
+			inContext:(CGContextRef)context {
+
+	pathRoundRect(rect, radius, context);
+	CGContextDrawPath(context, kCGPathEOFillStroke);
+}
 @end
