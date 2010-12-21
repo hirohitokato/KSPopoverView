@@ -28,7 +28,7 @@
 	_openedFrame = CGRectMake(100.0f, 100.0f, 120.0f, 250.0f);
 
 	self.view.frame = _normalFrame;
-	self.view.backgroundColor = [UIColor redColor];
+	self.view.backgroundColor = [UIColor blackColor];
 	self.view.multipleTouchEnabled = YES;
 	self.view.userInteractionEnabled = YES;
 
@@ -150,9 +150,11 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	_state = KSPopoverStateOpened;
-
-	[self openMenu];
+	if (_state == KSPopoverStateNormal) {
+		_state = KSPopoverStateOpened;
+		[self openMenu];
+		_firstTouch = [touches anyObject];
+	}
 
 	[self forwardTouches:touches withEventType:KSPopoverEventTouchesBegan];
 }
@@ -168,7 +170,10 @@
 
 	[self forwardTouches:touches withEventType:KSPopoverEventTouchesEnded];
 
-	[self hideMenu];
+	if ([[touches allObjects] count] == 1 && _firstTouch==[touches anyObject]) {
+		[self performSelector:@selector(hideMenu) withObject:nil afterDelay:0.1f];
+		_firstTouch = nil;
+	}
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -176,7 +181,10 @@
 
 	[self forwardTouches:touches withEventType:KSPopoverEventTouchesEnded];
 
-	[self hideMenu];
+	if ([[touches allObjects] count] == 1 && _firstTouch==[touches anyObject]) {
+		[self performSelector:@selector(hideMenu) withObject:nil afterDelay:0.1f];
+		_firstTouch = nil;
+	}
 }
 
 #pragma mark -
@@ -185,12 +193,13 @@
 	// childsのラベルを配置
 	[self updateFrameSize];
 	for (NSInteger i=0; i<[self.childs count]; i++) {
-		UIView *v = [self.childs objectAtIndex:i];
+		UILabel *v = [self.childs objectAtIndex:i];
 		// 場所を計算
-		v.frame = CGRectMake(5.0f, 35.0f*i+5.0f, 60.0f, 30.0f);
-		v.backgroundColor = [UIColor colorWithWhite:i/5.0f alpha:1.0f];
+		v.frame = CGRectMake(5.0f, 35.0f*i+5.0f, FIXME_BUTTON_WIDTH-FIXME_BUTTON_GAP*2, 30.0f);
 		v.alpha = 0.0f;
+		v.backgroundColor = [UIColor blackColor];
 		v.userInteractionEnabled = YES;
+		v.text = @"hogehoge";
 		[self.view addSubview:v];
 	}
 	
@@ -213,8 +222,9 @@
 	[UIView setAnimationDuration:0.2f];
 	[UIView setAnimationDidStopSelector:@selector(didEndFadeout:finished:context:)];
 	self.view.frame = _normalFrame;
-	for (UIView *v in self.childs) {
+	for (UILabel *v in self.childs) {
 		v.alpha = 0.0f;
+		// @TODO: ラベルの選択状態を解除しておく
 	}
 	[UIView commitAnimations];
 }

@@ -27,6 +27,7 @@ typedef enum {
 	
 	// ユーザーに見せるボタン相当
 	UILabel *_button;
+	UITouch *_firstTouch;
 	
 	id<KSPopoverViewControllerDelegate> _delegate;
 }

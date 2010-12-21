@@ -12,7 +12,7 @@
 #define KSPopoverEventTouchesEnded @"TouchesEnded__"
 typedef NSString* KSPopoverEventType;
 
-@interface KSPopoverViewButtonBase : UIView {
+@interface KSPopoverViewButtonBase : UILabel {
 	BOOL _selected;
 	NSMutableDictionary *_objectsForState;
 }
