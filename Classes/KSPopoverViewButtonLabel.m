@@ -46,6 +46,7 @@
 }
 
 - (void)dealloc {
+	NSLog(@"label(%@) is dealloced",self.text);
     [super dealloc];
 }
 

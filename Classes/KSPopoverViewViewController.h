@@ -6,18 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KSPopoverViewController.h"
 
-@interface KSPopoverViewViewController : UIViewController {
+@interface KSPopoverViewViewController : UIViewController <KSPopoverViewControllerDelegate> {
 	IBOutlet UIButton *childButtons1;
 	IBOutlet UIButton *childButtons2;
 }
-
-- (IBAction)touchDownParent:(UIButton *)button;
-- (IBAction)touchUpParent:(UIButton *)button;
-- (IBAction)touchDragEnter:(UIButton *)button;
-- (IBAction)touchDragExit:(UIButton *)button;
-- (IBAction)touchDragInside:(UIButton *)button;
-- (IBAction)touchDragOutside:(UIButton *)button;
 
 @end
 

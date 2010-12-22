@@ -13,6 +13,7 @@
 - (id)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
+	self.backgroundColor = [UIColor clearColor];
     if (self) {
 		NSLog(@"initWithFrame:%@", NSStringFromCGRect(frame));
 		_selected = NO;
@@ -37,48 +38,63 @@
 
 - (BOOL)handleTouchAtPoint:(CGPoint)point withState:(KSPopoverEventType)type {
 	BOOL isIn = [self containsPoint:point];
+	BOOL handle = NO;
 	if (isIn) {
 		// ここでイベント処理
-		if ([type isEqualToString:KSPopoverEventTouchesBegan]) {
-			self.selected = YES;
-			// Touch downイベントの発生
-			[self setNeedsDisplay];
-			
-		} else if ([type isEqualToString:KSPopoverEventTouchesMoved]) {
-			if (self.selected == NO) {
+		switch (type) {
+			case KSPopoverEventTouchesBegan:
 				self.selected = YES;
-				// Touch downイベントの発生
 				[self setNeedsDisplay];
+				// Touch downイベントの発生
+				handle = NO;
+				break;
+
+			case KSPopoverEventTouchesMoved:
+				if (self.selected == NO) {
+					self.selected = YES;
+					[self setNeedsDisplay];
+					// Touch downイベントの発生
+					handle = NO;
+				}
+				break;
 				
-			}
-		} else if ([type isEqualToString:KSPopoverEventTouchesEnded]) {
-			self.selected = NO;
-			// Touch upイベントの発生
-			[self setNeedsDisplay];
+			case KSPopoverEventTouchesEnded:
+				self.selected = NO;
+				// Touch upイベントの発生
+				[self setNeedsDisplay];
+				handle = YES;
+				break;
+				
+			default:
+				break;
 		}
 	} else {
-		if ([type isEqualToString:KSPopoverEventTouchesMoved]) {
+		if (type == KSPopoverEventTouchesMoved) {
 			if (self.selected == YES) {
 				self.selected = NO;
 				// Touch cancelledイベントの発生
 				[self setNeedsDisplay];
+				handle = NO;
 			}
 		}
 	}
 	
-	return isIn;
+	return handle;
 }
 
-// protected method
+- (void)resetSelected {
+	_selected = NO;
+}
+
+#pragma mark -
+#pragma mark -- protected methods
 - (void)setObject:(id)obj forState:(KSPopoverEventType)type {
-	[_objectsForState setObject:obj forKey:type];
+	[_objectsForState setObject:obj forKey:OBJ_OF(type)];
 }
-// protected method
 - (id)objectForState:(KSPopoverEventType)type {
-	return [_objectsForState objectForKey:type];
+	return [_objectsForState objectForKey:OBJ_OF(type)];
 }
 
-// protected
 - (BOOL)containsPoint:(CGPoint)point {
     if (self.hidden==NO && CGRectContainsPoint(self.frame, point)) {
 		return YES;

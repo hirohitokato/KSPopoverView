@@ -40,8 +40,11 @@ typedef enum {
 - (NSInteger)addButtonWithTitle:(NSString *)title;
 @end
 
-@protocol KSPopoverViewControllerDelegate
+#pragma mark -
+@protocol KSPopoverViewControllerDelegate <NSObject>
 @optional
-- (void)popoverViewController:(KSPopoverViewController *)controller clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)popoverViewController:(KSPopoverViewController *)controller
+			   selectedButton:(KSPopoverViewButtonBase *)button
+					  AtIndex:(NSInteger)buttonIndex;
 @end
 

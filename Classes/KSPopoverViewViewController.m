@@ -6,7 +6,6 @@
 //
 
 #import "KSPopoverViewViewController.h"
-#import "KSPopoverViewController.h"
 
 @implementation KSPopoverViewViewController
 
@@ -15,9 +14,14 @@
     [super viewDidLoad];
 	KSPopoverViewController *vc = [[KSPopoverViewController alloc] initWithNibName:nil
 																			bundle:nil];
+	[vc addButtonWithTitle:@"1111111111"];
+	[vc addButtonWithTitle:@"2222222222"];
+	[vc addButtonWithTitle:@"3333333333"];
+	[vc addButtonWithTitle:@"4444444444"];
+	[vc addButtonWithTitle:@"5555555555"];
+	[vc addButtonWithTitle:@"6666666666"];
+	vc.delegate = self;
 	[self.view addSubview:vc.view];
-	//childButtons1.hidden = YES;
-	//childButtons2.hidden = YES;
 }
 
 /*
@@ -45,44 +49,11 @@
     [super dealloc];
 }
 
-- (IBAction)touchDownParent:(UIButton *)button {
-	childButtons1.hidden = NO;
-	childButtons2.hidden = NO;
-	UIResponder *obj = [button nextResponder];
-	while (obj) {
-		NSLog(@"nextResponder is %@", obj);
-		obj = [obj nextResponder];
-	}
-}
-- (IBAction)touchUpParent:(UIButton *)button {
-	//childButtons1.hidden = YES;
-	//childButtons2.hidden = YES;
-}
-- (IBAction)touchDragEnter:(UIButton *)button {
-	NSLog(@"Entered inside a button%d", button.tag);
-	button.backgroundColor = [UIColor redColor];
-}
-- (IBAction)touchDragExit:(UIButton *)button {
-	NSLog(@"Exit from a button%d", button.tag);
-	button.backgroundColor = [UIColor whiteColor];
-}
-- (IBAction)touchDragInside:(UIButton *)button {
-	NSLog(@"Drag inside a button%d", button.tag);
-	button.backgroundColor = [UIColor yellowColor];
-	UIResponder *obj = [button nextResponder];
-	while (obj) {
-		NSLog(@"nextResponder is %@", obj);
-		obj = [obj nextResponder];
-	}
-}
-- (IBAction)touchDragOutside:(UIButton *)button {
-	NSLog(@"Drag outside a button%d", button.tag);
-	button.backgroundColor = [UIColor purpleColor];
-	UIResponder *obj = [button nextResponder];
-	while (obj) {
-		NSLog(@"nextResponder is %@", obj);
-		obj = [obj nextResponder];
-	}
+#pragma mark -
+- (void)popoverViewController:(KSPopoverViewController *)controller
+			   selectedButton:(KSPopoverViewButtonBase *)button
+					  AtIndex:(NSInteger)buttonIndex {
+	button.text = @"pressed";
 }
 
 @end

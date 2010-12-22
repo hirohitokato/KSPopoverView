@@ -20,21 +20,27 @@
 @synthesize childs=_childs;
 @synthesize delegate=_delegate;
 
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
+	if ([super initWithNibName:nibName bundle:nibBundle]) {
+		_state = KSPopoverStateNormal;
+		
+		_normalFrame = CGRectMake(100.0f, 300.0f, 100.0f, 50.0f);
+		_openedFrame = CGRectMake(100.0f, 100.0f, 120.0f, 250.0f);
+
+		self.childs = [[NSMutableArray alloc] init];
+	}
+	return self;
+}
+
 - (void)loadView {
 	[super loadView];
-	_state = KSPopoverStateNormal;
-	
-	_normalFrame = CGRectMake(100.0f, 300.0f, 100.0f, 50.0f);
-	_openedFrame = CGRectMake(100.0f, 100.0f, 120.0f, 250.0f);
 
 	self.view.frame = _normalFrame;
 	self.view.backgroundColor = [UIColor blackColor];
 	self.view.multipleTouchEnabled = YES;
 	self.view.userInteractionEnabled = YES;
 
-	self.childs = [[NSMutableArray alloc] init];
-	
-	// メニューを引き出す契機になるボタン相当の領域を描画
+	// メニューを引き出す契機になるボタン相当の領域を描画(ビューより5px内側)
 	CGRect buttonFrame = CGRectInset(_normalFrame, 5.0f, 5.0f);
 	buttonFrame.origin.x -= _normalFrame.origin.x;
 	buttonFrame.origin.y -= _normalFrame.origin.y;
@@ -45,30 +51,10 @@
 	self.button.textAlignment = UITextAlignmentCenter;
 	[self.view addSubview:self.button];
 
-	// 子ボタンを作成
-	for (int i=0; i<3; i++) {
-		KSPopoverViewButtonBase *b = [[KSPopoverViewButtonLabel alloc] initWithFrame:CGRectZero];
-		[self.childs addObject:b];
-	}
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-#pragma mark KSPopoverViewButtonBaseのテスト
-#if 1
-	KSPopoverViewButtonBase *b = [[[KSPopoverViewButtonLabel alloc] initWithFrame:CGRectZero]
-								  autorelease];
-	[b setObject:@"hoge" forState:KSPopoverEventTouchesBegan];
-	NSAssert([@"hoge" isEqualToString:[b objectForState:KSPopoverEventTouchesBegan]], @"mismatch");
-	[b setObject:@"fuga" forState:KSPopoverEventTouchesMoved];
-	NSAssert([@"fuga" isEqualToString:[b objectForState:KSPopoverEventTouchesMoved]], @"mismatch");
-	[b setObject:@"moga" forState:KSPopoverEventTouchesEnded];
-	NSAssert([@"moga" isEqualToString:[b objectForState:KSPopoverEventTouchesEnded]], @"mismatch");
-	[b setObject:@"moga" forState:KSPopoverEventTouchesBegan];
-	NSAssert([@"moga" isEqualToString:[b objectForState:KSPopoverEventTouchesBegan]], @"mismatch");
-	[b handleTouchAtPoint:CGPointZero withState:KSPopoverEventTouchesBegan];
-#endif
 }
 
 /*
@@ -137,14 +123,28 @@
 - (void)forwardTouches:(NSSet *)touches withEventType:(KSPopoverEventType)type {
 	NSArray *array = [touches allObjects];
 	for (UITouch *t in array) {
-		for (KSPopoverViewButtonBase *child in _childs) {
+		NSUInteger index = 0;
+		for (KSPopoverViewButtonBase *child in self.childs) {
 			// ボタンに位置を渡して、イベントハンドリングを確認する
-			// 返戻値がYESだったら、イベントは処理されたとしてbreak
+			// 返戻値がYESだったら、イベントは処理されたとしてbreak,次のタッチイベントへ
 			BOOL handled = [child handleTouchAtPoint:[t locationInView:self.view]
 										 withState:type];
 			if (handled) {
-				// NSLog(@"Yes: ハンドルされたよ:%@", t);
+				if (self.delegate) {
+					if ([self.delegate respondsToSelector:
+						 @selector(popoverViewController:selectedButton:AtIndex:)]) {
+						[self.delegate popoverViewController:self
+											  selectedButton:child
+													 AtIndex:index];
+						break;
+					} else {
+						NSLog(@"delegate does not define methods.");
+					}
+				} else {
+					NSLog(@"delegate is not set.");
+				}
 			}
+			++index;
 		}
 	}
 }
@@ -192,15 +192,18 @@
 - (void)openMenu {
 	// childsのラベルを配置
 	[self updateFrameSize];
-	for (NSInteger i=0; i<[self.childs count]; i++) {
-		UILabel *v = [self.childs objectAtIndex:i];
+	NSUInteger i = 0;
+	for (KSPopoverViewButtonBase *v in self.childs) {
 		// 場所を計算
-		v.frame = CGRectMake(5.0f, 35.0f*i+5.0f, FIXME_BUTTON_WIDTH-FIXME_BUTTON_GAP*2, 30.0f);
+		v.frame = CGRectMake(self.button.frame.origin.x,
+							 self.button.frame.origin.y,
+							 FIXME_BUTTON_WIDTH-FIXME_BUTTON_GAP*2,
+							 30.0f);
 		v.alpha = 0.0f;
-		v.backgroundColor = [UIColor blackColor];
 		v.userInteractionEnabled = YES;
-		v.text = @"hogehoge";
 		[self.view addSubview:v];
+
+		++i;
 	}
 	
 	// アニメーション開始
@@ -208,13 +211,19 @@
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDuration:0.2f];
 	self.view.frame = _openedFrame;
-	for (UIView *v in self.childs) {
+	i = 0;
+	for (KSPopoverViewButtonBase *v in self.childs) {
+		v.frame = CGRectMake(v.frame.origin.x,
+							 35.0f*i+5.0f,
+							 v.frame.size.width,30.0f);
 		v.alpha = 1.0f;
+
+		++i;
 	}
 	[UIView commitAnimations];
 }
 - (void)hideMenu {
-	for (UIView *v in self.childs) {
+	for (KSPopoverViewButtonBase *v in self.childs) {
 		v.userInteractionEnabled = NO;
 	}
 	[UIView beginAnimations:@"FadeOutKSPopoverView" context:nil];
@@ -222,9 +231,12 @@
 	[UIView setAnimationDuration:0.2f];
 	[UIView setAnimationDidStopSelector:@selector(didEndFadeout:finished:context:)];
 	self.view.frame = _normalFrame;
-	for (UILabel *v in self.childs) {
+	for (KSPopoverViewButtonBase *v in self.childs) {
+		v.frame = CGRectMake(self.button.frame.origin.x,
+							 self.button.frame.origin.y,
+							 v.frame.size.width, v.frame.size.height);
 		v.alpha = 0.0f;
-		// @TODO: ラベルの選択状態を解除しておく
+		[v resetSelected];
 	}
 	[UIView commitAnimations];
 }
@@ -233,7 +245,7 @@
 				finished:(NSNumber *)finished
 				 context:(void *)context {
 	// ボタン群をビューから除去
-	for (UIView *v in self.childs) {
+	for (KSPopoverViewButtonBase *v in self.childs) {
 		v.alpha = 1.0f;
 		[v removeFromSuperview];
 	}
@@ -243,11 +255,12 @@
 - (NSInteger)addButtonWithTitle:(NSString *)title {
 	KSPopoverViewButtonLabel *label = [[KSPopoverViewButtonLabel alloc]
 									   initWithFrame:CGRectZero];
-	[label setObject:title forState:KSPopoverStateNormal];
-	[label setObject:title forState:KSPopoverStateOpened];
-
+	// 子ボタンの追加
+	label.text = title;
 	[self.childs addObject:label];
 	[label release];
+	NSLog(@"num childs : %d", [self.childs count]);
+	
 	return [self.childs count] - 1;
 }
 
