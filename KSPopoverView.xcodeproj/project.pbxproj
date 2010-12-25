@@ -19,7 +19,7 @@
 		911D41F012C5AF000043878E /* KSPopoverViewButtonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D41E912C5AF000043878E /* KSPopoverViewButtonLabel.m */; };
 		911D41F112C5AF000043878E /* KSPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D41EB12C5AF000043878E /* KSPopoverViewController.m */; };
 		911D41F212C5AF000043878E /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D41ED12C5AF000043878E /* UIColor-Expanded.m */; };
-		911D41FD12C5B0000043878E /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 911D41FC12C5B0000043878E /* README.txt */; };
+		911D41FD12C5B0000043878E /* README in Resources */ = {isa = PBXBuildFile; fileRef = 911D41FC12C5B0000043878E /* README */; };
 		911D420912C5B3450043878E /* KSPopoverViewAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D420612C5B3450043878E /* KSPopoverViewAppDelegate.m */; };
 		911D420A12C5B3450043878E /* KSPopoverViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D420812C5B3450043878E /* KSPopoverViewViewController.m */; };
 /* End PBXBuildFile section */
@@ -45,7 +45,7 @@
 		911D41EB12C5AF000043878E /* KSPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewController.m; sourceTree = "<group>"; };
 		911D41EC12C5AF000043878E /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
 		911D41ED12C5AF000043878E /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
-		911D41FC12C5B0000043878E /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.txt; path = KSPopoverView/README.txt; sourceTree = SOURCE_ROOT; };
+		911D41FC12C5B0000043878E /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		911D420512C5B3450043878E /* KSPopoverViewAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewAppDelegate.h; sourceTree = "<group>"; };
 		911D420612C5B3450043878E /* KSPopoverViewAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewAppDelegate.m; sourceTree = "<group>"; };
 		911D420712C5B3450043878E /* KSPopoverViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewViewController.h; sourceTree = "<group>"; };
@@ -69,6 +69,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				911D41FC12C5B0000043878E /* README */,
 				911D420512C5B3450043878E /* KSPopoverViewAppDelegate.h */,
 				911D420612C5B3450043878E /* KSPopoverViewAppDelegate.m */,
 				911D420712C5B3450043878E /* KSPopoverViewViewController.h */,
@@ -141,7 +142,6 @@
 				911D41EB12C5AF000043878E /* KSPopoverViewController.m */,
 				911D41EC12C5AF000043878E /* UIColor-Expanded.h */,
 				911D41ED12C5AF000043878E /* UIColor-Expanded.m */,
-				911D41FC12C5B0000043878E /* README.txt */,
 			);
 			path = KSPopoverView;
 			sourceTree = "<group>";
@@ -198,7 +198,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* KSPopoverViewViewController.xib in Resources */,
 				911D415A12C594990043878E /* katokichi.png in Resources */,
-				911D41FD12C5B0000043878E /* README.txt in Resources */,
+				911D41FD12C5B0000043878E /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,11 +1,17 @@
 *** KSPopoverView ***
 
-Menu view & view controller that users can flick the menu.
+KSPopoverView is an iOS view controller that a user can flick & select the menu.
 
-** HOW TO USE **
+** Usage **
 1. Include a "KSPopoverViewController.h" header
 2. Apply KSPopoverViewControllerDelegate protocol
 3. Init like as [[KSPopoverViewController alloc] initWithImage:image point:location]
 4. Add buttons by [vc addButtonWithTitle:button]
 5. Write popoverViewController:selectedButton:AtIndex: method and the event
 
+** Author **
+KatokichiSoft
+http://cielo.rojo.jp
+
+** License **
+The new BSD license
