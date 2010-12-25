@@ -9,8 +9,7 @@
 #import "KSPopoverViewController.h"
 
 @interface KSPopoverViewViewController : UIViewController <KSPopoverViewControllerDelegate> {
-	IBOutlet UIButton *childButtons1;
-	IBOutlet UIButton *childButtons2;
+	KSPopoverViewController *_menu;
 }
 
 @end

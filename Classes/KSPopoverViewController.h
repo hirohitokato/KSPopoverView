@@ -26,17 +26,18 @@ typedef enum {
 	KSPopoverState _state;
 	
 	// ユーザーに見せるボタン相当
-	UILabel *_button;
+	UIImageView *_button;
 	UITouch *_firstTouch;
 	
 	id<KSPopoverViewControllerDelegate> _delegate;
 }
 
-@property(nonatomic, retain) UILabel *button;
+@property(nonatomic, retain) UIImageView *button;
 @property(retain) NSMutableArray *childs;
 @property(nonatomic, assign) id<KSPopoverViewControllerDelegate> delegate;
+@property(nonatomic, assign) CGRect frame;
 
-- (void)setFrame:(CGRect)rect forState:(KSPopoverState)state;
+- (id)initWithImage:(UIImage *)buttonImage point:(CGPoint)point;
 - (NSInteger)addButtonWithTitle:(NSString *)title;
 @end
 

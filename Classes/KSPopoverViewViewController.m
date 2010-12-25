@@ -9,19 +9,19 @@
 
 @implementation KSPopoverViewViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-	KSPopoverViewController *vc = [[KSPopoverViewController alloc] initWithNibName:nil
-																			bundle:nil];
-	[vc addButtonWithTitle:@"1111111111"];
-	[vc addButtonWithTitle:@"2222222222"];
-	[vc addButtonWithTitle:@"3333333333"];
-	[vc addButtonWithTitle:@"4444444444"];
-	[vc addButtonWithTitle:@"5555555555"];
-	[vc addButtonWithTitle:@"6666666666"];
-	vc.delegate = self;
-	[self.view addSubview:vc.view];
+	UIImage *image = [UIImage imageNamed:@"katokichi"];
+	_menu = [[KSPopoverViewController alloc] initWithImage:image
+													 point:CGPointMake(50.0f, 340.0f)];
+	[_menu addButtonWithTitle:@"11111111"];
+	[_menu addButtonWithTitle:@"2222222222"];
+	[_menu addButtonWithTitle:@"3333333"];
+	[_menu addButtonWithTitle:@"444444444"];
+	[_menu addButtonWithTitle:@"555"];
+	[_menu addButtonWithTitle:@"666666666666"];
+	_menu.delegate = self;
+	[self.view addSubview:_menu.view];
 }
 
 /*
@@ -42,10 +42,13 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+	[_menu release];
+	_menu = nil;
 }
 
 
 - (void)dealloc {
+	[_menu release];
     [super dealloc];
 }
 

@@ -82,6 +82,11 @@
 	return handle;
 }
 
+- (CGSize)preferredSize {
+	NSAssert(0, @"This method must be overwritten.");
+	return CGSizeZero;
+}
+
 - (void)resetSelected {
 	_selected = NO;
 }

@@ -8,14 +8,16 @@
 #import "KSPopoverViewButtonLabel.h"
 #import "KSCGUtils.h"
 
+#define MIN_HEIGHT 30.0f
+#define INSET_WIDTH 7.0f
 @implementation KSPopoverViewButtonLabel
-
 
 - (id)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code.
+		self.textColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -38,11 +40,15 @@
 	CGContextAddRect(ctx, rect);
 	CGContextClosePath(ctx);
 	 */
-	[[UIColor greenColor] setStroke];
 	[KSCGUtils clipRoundRect:rect withRadius:4.0f inContext:ctx];
 	[KSCGUtils drawGlossGradient:ctx color:bkgcolor inRect:rect];
 	[super drawRect:rect];
 	CGContextRestoreGState(ctx);
+}
+
+- (void)drawTextInRect:(CGRect)rect {
+	// テキストの描画領域を指定
+	[super drawTextInRect:CGRectInset(rect, INSET_WIDTH, 0)]; // 若干内側にバランス
 }
 
 - (void)dealloc {
@@ -50,4 +56,10 @@
     [super dealloc];
 }
 
+#pragma mark -
+
+- (CGSize)preferredSize {
+	return CGSizeMake([self.text sizeWithFont:self.font].width+INSET_WIDTH*2,
+					  fmax([self.text sizeWithFont:self.font].height, MIN_HEIGHT));
+}
 @end

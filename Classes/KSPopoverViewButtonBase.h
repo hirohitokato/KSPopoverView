@@ -25,6 +25,9 @@ typedef enum {
 // 渡された座標で自分がイベント処理を行うかどうかの判定（とその処理）。子クラスでオーバーライド
 - (BOOL)handleTouchAtPoint:(CGPoint)point withState:(KSPopoverEventType)type;
 
+// 自分の表示して欲しいサイズをCGRectで返す
+- (CGSize)preferredSize;
+
 // 選択/非選択状態のリセット
 - (void)resetSelected;
 @end
