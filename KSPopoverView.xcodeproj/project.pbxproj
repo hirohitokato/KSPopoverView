@@ -7,47 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A1F1C3812BB4B5600A4608A /* KSPopoverViewButtonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1F1C3712BB4B5600A4608A /* KSPopoverViewButtonBase.m */; };
-		1A1F1C6F12BB597F00A4608A /* KSPopoverViewButtonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1F1C6E12BB597F00A4608A /* KSPopoverViewButtonLabel.m */; };
-		1A8C12CB12C0A01E002C4157 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C12CA12C0A01E002C4157 /* UIColor-Expanded.m */; };
-		1A8C134512C0AAB6002C4157 /* KSCGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C12AF12C09651002C4157 /* KSCGUtils.m */; };
-		1D3623260D0F684500981E51 /* KSPopoverViewAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KSPopoverViewAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		2899E5220DE3E06400AC0155 /* KSPopoverViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* KSPopoverViewViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		28D7ACF80DDB3853001CB0EB /* KSPopoverViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* KSPopoverViewViewController.m */; };
 		911D415A12C594990043878E /* katokichi.png in Resources */ = {isa = PBXBuildFile; fileRef = 911D415912C594990043878E /* katokichi.png */; };
-		91FA3389129E9D350075A341 /* KSPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FA3388129E9D350075A341 /* KSPopoverViewController.m */; };
+		911D41EE12C5AF000043878E /* KSCGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D41E512C5AF000043878E /* KSCGUtils.m */; };
+		911D41EF12C5AF000043878E /* KSPopoverViewButtonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D41E712C5AF000043878E /* KSPopoverViewButtonBase.m */; };
+		911D41F012C5AF000043878E /* KSPopoverViewButtonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D41E912C5AF000043878E /* KSPopoverViewButtonLabel.m */; };
+		911D41F112C5AF000043878E /* KSPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D41EB12C5AF000043878E /* KSPopoverViewController.m */; };
+		911D41F212C5AF000043878E /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D41ED12C5AF000043878E /* UIColor-Expanded.m */; };
+		911D41FD12C5B0000043878E /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 911D41FC12C5B0000043878E /* README.txt */; };
+		911D420912C5B3450043878E /* KSPopoverViewAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D420612C5B3450043878E /* KSPopoverViewAppDelegate.m */; };
+		911D420A12C5B3450043878E /* KSPopoverViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D420812C5B3450043878E /* KSPopoverViewViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A1F1C3612BB4B5600A4608A /* KSPopoverViewButtonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewButtonBase.h; sourceTree = "<group>"; };
-		1A1F1C3712BB4B5600A4608A /* KSPopoverViewButtonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewButtonBase.m; sourceTree = "<group>"; };
-		1A1F1C6D12BB597F00A4608A /* KSPopoverViewButtonLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewButtonLabel.h; sourceTree = "<group>"; };
-		1A1F1C6E12BB597F00A4608A /* KSPopoverViewButtonLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewButtonLabel.m; sourceTree = "<group>"; };
-		1A8C12AE12C09651002C4157 /* KSCGUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCGUtils.h; sourceTree = "<group>"; };
-		1A8C12AF12C09651002C4157 /* KSCGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCGUtils.m; sourceTree = "<group>"; };
-		1A8C12C912C0A01E002C4157 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
-		1A8C12CA12C0A01E002C4157 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* KSPopoverViewAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* KSPopoverViewAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* KSPopoverView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSPopoverView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E5210DE3E06400AC0155 /* KSPopoverViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KSPopoverViewViewController.xib; sourceTree = "<group>"; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		28D7ACF60DDB3853001CB0EB /* KSPopoverViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewViewController.h; sourceTree = "<group>"; };
-		28D7ACF70DDB3853001CB0EB /* KSPopoverViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* KSPopoverView_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverView_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* KSPopoverView-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "KSPopoverView-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		911D415912C594990043878E /* katokichi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = katokichi.png; sourceTree = "<group>"; };
-		91FA3387129E9D350075A341 /* KSPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewController.h; sourceTree = "<group>"; };
-		91FA3388129E9D350075A341 /* KSPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewController.m; sourceTree = "<group>"; };
+		911D41E412C5AF000043878E /* KSCGUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCGUtils.h; sourceTree = "<group>"; };
+		911D41E512C5AF000043878E /* KSCGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCGUtils.m; sourceTree = "<group>"; };
+		911D41E612C5AF000043878E /* KSPopoverViewButtonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewButtonBase.h; sourceTree = "<group>"; };
+		911D41E712C5AF000043878E /* KSPopoverViewButtonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewButtonBase.m; sourceTree = "<group>"; };
+		911D41E812C5AF000043878E /* KSPopoverViewButtonLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewButtonLabel.h; sourceTree = "<group>"; };
+		911D41E912C5AF000043878E /* KSPopoverViewButtonLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewButtonLabel.m; sourceTree = "<group>"; };
+		911D41EA12C5AF000043878E /* KSPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewController.h; sourceTree = "<group>"; };
+		911D41EB12C5AF000043878E /* KSPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewController.m; sourceTree = "<group>"; };
+		911D41EC12C5AF000043878E /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
+		911D41ED12C5AF000043878E /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
+		911D41FC12C5B0000043878E /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.txt; path = KSPopoverView/README.txt; sourceTree = SOURCE_ROOT; };
+		911D420512C5B3450043878E /* KSPopoverViewAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewAppDelegate.h; sourceTree = "<group>"; };
+		911D420612C5B3450043878E /* KSPopoverViewAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewAppDelegate.m; sourceTree = "<group>"; };
+		911D420712C5B3450043878E /* KSPopoverViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewViewController.h; sourceTree = "<group>"; };
+		911D420812C5B3450043878E /* KSPopoverViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,13 +69,13 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				911D41DB12C5AD180043878E /* lib */,
-				1D3623240D0F684500981E51 /* KSPopoverViewAppDelegate.h */,
-				1D3623250D0F684500981E51 /* KSPopoverViewAppDelegate.m */,
-				28D7ACF60DDB3853001CB0EB /* KSPopoverViewViewController.h */,
-				28D7ACF70DDB3853001CB0EB /* KSPopoverViewViewController.m */,
+				911D420512C5B3450043878E /* KSPopoverViewAppDelegate.h */,
+				911D420612C5B3450043878E /* KSPopoverViewAppDelegate.m */,
+				911D420712C5B3450043878E /* KSPopoverViewViewController.h */,
+				911D420812C5B3450043878E /* KSPopoverViewViewController.m */,
+				911D41E312C5AF000043878E /* KSPopoverView */,
 			);
-			path = Classes;
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -126,21 +128,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		911D41DB12C5AD180043878E /* lib */ = {
+		911D41E312C5AF000043878E /* KSPopoverView */ = {
 			isa = PBXGroup;
 			children = (
-				91FA3387129E9D350075A341 /* KSPopoverViewController.h */,
-				91FA3388129E9D350075A341 /* KSPopoverViewController.m */,
-				1A1F1C3612BB4B5600A4608A /* KSPopoverViewButtonBase.h */,
-				1A1F1C3712BB4B5600A4608A /* KSPopoverViewButtonBase.m */,
-				1A1F1C6D12BB597F00A4608A /* KSPopoverViewButtonLabel.h */,
-				1A1F1C6E12BB597F00A4608A /* KSPopoverViewButtonLabel.m */,
-				1A8C12AE12C09651002C4157 /* KSCGUtils.h */,
-				1A8C12AF12C09651002C4157 /* KSCGUtils.m */,
-				1A8C12C912C0A01E002C4157 /* UIColor-Expanded.h */,
-				1A8C12CA12C0A01E002C4157 /* UIColor-Expanded.m */,
+				911D41E412C5AF000043878E /* KSCGUtils.h */,
+				911D41E512C5AF000043878E /* KSCGUtils.m */,
+				911D41E612C5AF000043878E /* KSPopoverViewButtonBase.h */,
+				911D41E712C5AF000043878E /* KSPopoverViewButtonBase.m */,
+				911D41E812C5AF000043878E /* KSPopoverViewButtonLabel.h */,
+				911D41E912C5AF000043878E /* KSPopoverViewButtonLabel.m */,
+				911D41EA12C5AF000043878E /* KSPopoverViewController.h */,
+				911D41EB12C5AF000043878E /* KSPopoverViewController.m */,
+				911D41EC12C5AF000043878E /* UIColor-Expanded.h */,
+				911D41ED12C5AF000043878E /* UIColor-Expanded.m */,
+				911D41FC12C5B0000043878E /* README.txt */,
 			);
-			name = lib;
+			path = KSPopoverView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +198,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* KSPopoverViewViewController.xib in Resources */,
 				911D415A12C594990043878E /* katokichi.png in Resources */,
+				911D41FD12C5B0000043878E /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,13 +210,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* KSPopoverViewAppDelegate.m in Sources */,
-				28D7ACF80DDB3853001CB0EB /* KSPopoverViewViewController.m in Sources */,
-				91FA3389129E9D350075A341 /* KSPopoverViewController.m in Sources */,
-				1A1F1C3812BB4B5600A4608A /* KSPopoverViewButtonBase.m in Sources */,
-				1A1F1C6F12BB597F00A4608A /* KSPopoverViewButtonLabel.m in Sources */,
-				1A8C12CB12C0A01E002C4157 /* UIColor-Expanded.m in Sources */,
-				1A8C134512C0AAB6002C4157 /* KSCGUtils.m in Sources */,
+				911D41EE12C5AF000043878E /* KSCGUtils.m in Sources */,
+				911D41EF12C5AF000043878E /* KSPopoverViewButtonBase.m in Sources */,
+				911D41F012C5AF000043878E /* KSPopoverViewButtonLabel.m in Sources */,
+				911D41F112C5AF000043878E /* KSPopoverViewController.m in Sources */,
+				911D41F212C5AF000043878E /* UIColor-Expanded.m in Sources */,
+				911D420912C5B3450043878E /* KSPopoverViewAppDelegate.m in Sources */,
+				911D420A12C5B3450043878E /* KSPopoverViewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
