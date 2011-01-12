@@ -2,7 +2,7 @@
 //  KSPopoverViewButtonBase.m
 //  KSPopoverView
 //
-//  Copyright 2010 Katokichi Software. All rights reserved.
+//  Copyright 2010, 2011 KatokichiSoft. All rights reserved.
 //
 
 #import "KSPopoverViewButtonBase.h"
@@ -15,7 +15,6 @@
     self = [super initWithFrame:frame];
 	self.backgroundColor = [UIColor clearColor];
     if (self) {
-		NSLog(@"initWithFrame:%@", NSStringFromCGRect(frame));
 		_selected = NO;
 		_objectsForState = [[NSMutableDictionary alloc] init];
 	}

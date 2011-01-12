@@ -22,6 +22,8 @@
 		911D41FD12C5B0000043878E /* README in Resources */ = {isa = PBXBuildFile; fileRef = 911D41FC12C5B0000043878E /* README */; };
 		911D420912C5B3450043878E /* KSPopoverViewAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D420612C5B3450043878E /* KSPopoverViewAppDelegate.m */; };
 		911D420A12C5B3450043878E /* KSPopoverViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 911D420812C5B3450043878E /* KSPopoverViewViewController.m */; };
+		913E65BC12CD816F0034D581 /* KSPopoverViewParentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 913E65BB12CD816F0034D581 /* KSPopoverViewParentButton.m */; };
+		913E676C12CDEFDA0034D581 /* KSPopoverViewButtonOnOff.m in Sources */ = {isa = PBXBuildFile; fileRef = 913E676B12CDEFDA0034D581 /* KSPopoverViewButtonOnOff.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,10 @@
 		911D420612C5B3450043878E /* KSPopoverViewAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewAppDelegate.m; sourceTree = "<group>"; };
 		911D420712C5B3450043878E /* KSPopoverViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewViewController.h; sourceTree = "<group>"; };
 		911D420812C5B3450043878E /* KSPopoverViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewViewController.m; sourceTree = "<group>"; };
+		913E65BA12CD816F0034D581 /* KSPopoverViewParentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewParentButton.h; sourceTree = "<group>"; };
+		913E65BB12CD816F0034D581 /* KSPopoverViewParentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewParentButton.m; sourceTree = "<group>"; };
+		913E676A12CDEFDA0034D581 /* KSPopoverViewButtonOnOff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPopoverViewButtonOnOff.h; sourceTree = "<group>"; };
+		913E676B12CDEFDA0034D581 /* KSPopoverViewButtonOnOff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPopoverViewButtonOnOff.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,10 +144,14 @@
 				911D41E712C5AF000043878E /* KSPopoverViewButtonBase.m */,
 				911D41E812C5AF000043878E /* KSPopoverViewButtonLabel.h */,
 				911D41E912C5AF000043878E /* KSPopoverViewButtonLabel.m */,
+				913E676A12CDEFDA0034D581 /* KSPopoverViewButtonOnOff.h */,
+				913E676B12CDEFDA0034D581 /* KSPopoverViewButtonOnOff.m */,
 				911D41EA12C5AF000043878E /* KSPopoverViewController.h */,
 				911D41EB12C5AF000043878E /* KSPopoverViewController.m */,
 				911D41EC12C5AF000043878E /* UIColor-Expanded.h */,
 				911D41ED12C5AF000043878E /* UIColor-Expanded.m */,
+				913E65BA12CD816F0034D581 /* KSPopoverViewParentButton.h */,
+				913E65BB12CD816F0034D581 /* KSPopoverViewParentButton.m */,
 			);
 			path = KSPopoverView;
 			sourceTree = "<group>";
@@ -217,6 +227,8 @@
 				911D41F212C5AF000043878E /* UIColor-Expanded.m in Sources */,
 				911D420912C5B3450043878E /* KSPopoverViewAppDelegate.m in Sources */,
 				911D420A12C5B3450043878E /* KSPopoverViewViewController.m in Sources */,
+				913E65BC12CD816F0034D581 /* KSPopoverViewParentButton.m in Sources */,
+				913E676C12CDEFDA0034D581 /* KSPopoverViewButtonOnOff.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

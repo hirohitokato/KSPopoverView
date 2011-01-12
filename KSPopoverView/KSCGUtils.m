@@ -1,7 +1,7 @@
 //
 //  KSCGUtils.m
 //
-//  Copyright 2010 Katokichi Software. All rights reserved.
+//  Copyright 2010, 2011 KatokichiSoft. All rights reserved.
 //
 
 #import "KSCGUtils.h"
@@ -10,7 +10,6 @@
 static void pathRoundRect(CGRect rect, CGFloat radius, CGContextRef context);
 static float perceptualGlossFractionForColor(float *inputComponents);
 static void perceptualCausticColorForColor(float *inputComponents, float *outputComponents);
-static void pathRoundRect(CGRect rect, CGFloat radius, CGContextRef context);
 
 @implementation KSCGUtils
 
@@ -123,7 +122,7 @@ void glossInterpolation(void *info, const float *input,
     }
 }
 
-void pathRoundRect(CGRect rect, CGFloat radius, CGContextRef context) {
++ (void)pathForRoundRect:(CGContextRef)context rect:(CGRect)rect radius:(CGFloat)radius {
 
 	CGFloat lx = CGRectGetMinX(rect);
 	CGFloat cx = CGRectGetMidX(rect);
@@ -201,7 +200,7 @@ void pathRoundRect(CGRect rect, CGFloat radius, CGContextRef context) {
 		   withRadius:(CGFloat)radius
 			inContext:(CGContextRef)context {
 
-	pathRoundRect(rect, radius, context);
+	[self pathForRoundRect:context rect:rect radius:radius];
 	CGContextClip(context);
 }
 
@@ -209,7 +208,7 @@ void pathRoundRect(CGRect rect, CGFloat radius, CGContextRef context) {
 		   withRadius:(CGFloat)radius
 			inContext:(CGContextRef)context {
 
-	pathRoundRect(rect, radius, context);
+	[self pathForRoundRect:context rect:rect radius:radius];
 	CGContextDrawPath(context, kCGPathEOFillStroke);
 }
 @end

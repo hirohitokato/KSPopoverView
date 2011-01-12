@@ -2,7 +2,7 @@
 //  KSPopoverViewButtonBase.h
 //  KSPopoverView
 //
-//  Copyright 2010 Katokichi Software. All rights reserved.
+//  Copyright 2010, 2011 KatokichiSoft. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -13,6 +13,7 @@ typedef enum {
 	KSPopoverEventTouchesBegan = 0,
 	KSPopoverEventTouchesMoved,
 	KSPopoverEventTouchesEnded,
+	KSPopoverEventTouchesOther,
 } KSPopoverEventType;
 
 @interface KSPopoverViewButtonBase : UILabel {

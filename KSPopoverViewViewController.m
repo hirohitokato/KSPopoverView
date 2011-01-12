@@ -12,16 +12,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	UIImage *image = [UIImage imageNamed:@"katokichi"];
-	_menu = [[KSPopoverViewController alloc] initWithImage:image
-													 point:CGPointMake(50.0f, 340.0f)];
+	_menu = [[KSPopoverViewController alloc] initWithType:KSPopoverTypeOnOffLabel
+													image:image
+													point:CGPointMake(50.0f, 340.0f)];
+	_menu.delegate = self;
+	_menu.position = KSPopoverPositionTopRight;
+	//_menu.debug = YES;
+	[self.view addSubview:_menu.view];
+
 	[_menu addButtonWithTitle:@"11111111"];
 	[_menu addButtonWithTitle:@"2222222222"];
 	[_menu addButtonWithTitle:@"3333333"];
 	[_menu addButtonWithTitle:@"444444444"];
 	[_menu addButtonWithTitle:@"555"];
 	[_menu addButtonWithTitle:@"666666666666"];
-	_menu.delegate = self;
-	[self.view addSubview:_menu.view];
 }
 
 /*
@@ -54,8 +58,8 @@
 
 #pragma mark -
 - (void)popoverViewController:(KSPopoverViewController *)controller
-			   selectedButton:(KSPopoverViewButtonBase *)button
-					  AtIndex:(NSInteger)buttonIndex {
+		  selectedButtonIndex:(NSInteger)buttonIndex {
+	KSPopoverViewButtonBase *button = [controller labelAtIndex:buttonIndex];
 	button.text = @"pressed";
 }
 

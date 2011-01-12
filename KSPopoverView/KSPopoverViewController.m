@@ -2,11 +2,10 @@
 //  KSPopoverViewController.m
 //  KSPopoverView
 //
-//  Copyright 2010 KatokichiSoft. All rights reserved.
+//  Copyright 2010, 2011 KatokichiSoft. All rights reserved.
 //
 
 #import "KSPopoverViewController.h"
-#import "KSPopoverViewButtonLabel.h"
 
 #define BUTTON_GAP	5.0f	// ボタンの配置間隔
 
@@ -15,27 +14,49 @@
 - (void)hideMenu;
 - (void)openMenu;
 - (void)didEndHideChilds:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;
+- (void)updateFrameSize;
+- (void)calculateFrameToHide:(KSPopoverViewButtonBase *)v;
+- (void)calculateFrameWillShow:(KSPopoverViewButtonBase *)v;
 @end
 
 @implementation KSPopoverViewController
 @synthesize button=_button;
 @synthesize childs=_childs;
+@synthesize position=_position;
 @synthesize delegate=_delegate;
+@synthesize debug=_debug;
 
-- (id)initWithImage:(UIImage *)buttonImage point:(CGPoint)point {
+- (id)initWithType:(KSPopoverType)type
+			 image:(UIImage *)buttonImage
+			 point:(CGPoint)point {
 	if ([super init]) {
 		_state = KSPopoverStateNormal;
 		
 		_normalFrame = CGRectMake(point.x, point.y,
 								  buttonImage.size.width, buttonImage.size.height);
 		_openedFrame = CGRectZero;
-		self.button = [[UIImageView alloc] initWithImage:buttonImage];
-		self.button.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+		self.button = [[KSPopoverViewParentButton alloc] initWithImage:buttonImage];
 		self.button.userInteractionEnabled = YES;
 
 		self.childs = [[NSMutableArray alloc] init];
+		self.debug = NO;
+		
+		switch (type) {
+			case KSPopoverTypeTextLabel:
+				klass = [KSPopoverViewButtonLabel class];
+				break;
+			case KSPopoverTypeOnOffLabel:
+				klass = [KSPopoverViewButtonOnOff class];
+				break;
+			default:
+				break;
+		}
 	}
 	return self;
+}
+
+- (void)resetFrame {
+	self.view.frame = _normalFrame;
 }
 
 - (void)loadView {
@@ -45,9 +66,11 @@
 	self.view.backgroundColor = [UIColor clearColor];
 	self.view.multipleTouchEnabled = YES;
 	self.view.userInteractionEnabled = YES;
-
 	[self.view addSubview:self.button];
 
+	// TabBarControllerのせいかステータスバーのせいか不明だが、ビュー構造によってはframeが
+	// 書き換えられてしまうため、イベント終了後に再設定する。
+	[self performSelector:@selector(resetFrame) withObject:nil afterDelay:0.0f];
 }
 
 - (void)viewDidLoad {
@@ -96,25 +119,83 @@
 		maxWidth = (maxWidth>[v preferredSize].width)?maxWidth:[v preferredSize].width;
 		sumHeights += [v preferredSize].height + BUTTON_GAP;
 	}
-	_openedFrame = CGRectMake(_normalFrame.origin.x,
-							  _normalFrame.origin.y-sumHeights,
-							  fmax(_normalFrame.size.width, maxWidth),
-							  _normalFrame.size.height+sumHeights);
+	switch (self.position) {
+		case KSPopoverPositionTopRight:
+			_openedFrame = CGRectMake(_normalFrame.origin.x,
+									  _normalFrame.origin.y-sumHeights,
+									  fmax(_normalFrame.size.width, maxWidth),
+									  _normalFrame.size.height+sumHeights);			
+			break;
+		case KSPopoverPositionTopCenter:
+			_openedFrame = CGRectMake(_normalFrame.origin.x - (fmax(_normalFrame.size.width, maxWidth)-_normalFrame.size.width)/2.0,
+									  _normalFrame.origin.y-sumHeights,
+									  fmax(_normalFrame.size.width, maxWidth),
+									  _normalFrame.size.height+sumHeights);			
+			break;
+		default:
+			NSAssert(0, @"Specified position is not implemented!");
+			break;
+	}
+}
+
+- (void)calculateFrameToHide:(KSPopoverViewButtonBase *)v {
+	switch (self.position) {
+		case KSPopoverPositionTopRight:
+			v.frame = CGRectMake(self.button.frame.origin.x,
+								 self.button.frame.origin.y,
+								 v.frame.size.width, v.frame.size.height);
+			break;
+		case KSPopoverPositionTopCenter:
+			v.frame = CGRectMake((self.button.frame.size.width-v.frame.size.width)/2.0f,
+								 self.button.frame.origin.y,
+								 v.frame.size.width, v.frame.size.height);
+			break;
+		default:
+			NSAssert(0, @"Specified position is not implemented!");
+			break;
+	}
+}
+
+- (void)calculateFrameWillShow:(KSPopoverViewButtonBase *)v {
+	switch (self.position) {
+		case KSPopoverPositionTopRight:
+			v.frame = CGRectMake(0.0f, 0.0f,
+								 _openedFrame.size.width,
+								 [v preferredSize].height);
+			break;
+		case KSPopoverPositionTopCenter:
+			v.frame = CGRectMake(-(_openedFrame.size.width-self.button.frame.size.width)/2.0f, 0.0f,
+								 _openedFrame.size.width,
+								 [v preferredSize].height);
+			break;
+		default:
+			NSAssert(0, @"Specified position is not implemented!");
+			break;
+	}
 }
 
 #pragma mark -
 - (CGRect)frame {
 	return _normalFrame;
 }
-- (void)setFrame:(CGRect)rect {
-	_normalFrame = rect;
 
-	// 現在の状態も書き換え
-	if (_state == KSPopoverStateNormal) {
-		self.view.frame = rect;
+- (void)setPosition:(KSPopoverPosition)pos {
+	_position = pos;
+	// 親ボタン画像の固定位置を再指定
+	switch (pos) {
+		case KSPopoverPositionTopRight:
+			self.button.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
+			| UIViewAutoresizingFlexibleRightMargin;
+			break;
+		case KSPopoverPositionTopCenter:
+			self.button.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
+			| UIViewAutoresizingFlexibleLeftMargin
+			| UIViewAutoresizingFlexibleRightMargin;
+			break;
+		default:
+			break;
 	}
 }
-
 #pragma mark -
 - (void)forwardTouches:(NSSet *)touches withEventType:(KSPopoverEventType)type {
 	NSArray *array = [touches allObjects];
@@ -128,10 +209,9 @@
 			if (handled) {
 				if (self.delegate) {
 					if ([self.delegate respondsToSelector:
-						 @selector(popoverViewController:selectedButton:AtIndex:)]) {
+						 @selector(popoverViewController:selectedButtonIndex:)]) {
 						[self.delegate popoverViewController:self
-											  selectedButton:child
-													 AtIndex:index];
+										 selectedButtonIndex:index];
 						break;
 					} else {
 						NSLog(@"delegate object does not implement required methods.");
@@ -190,10 +270,7 @@
 	[self updateFrameSize];
 	for (KSPopoverViewButtonBase *v in self.childs) {
 		// 場所を計算
-		v.frame = CGRectMake(self.button.frame.origin.x,
-							 self.button.frame.origin.y,
-							 _openedFrame.size.width,
-							 [v preferredSize].height);
+		[self calculateFrameWillShow:v];
 		v.alpha = 0.0f;
 		v.userInteractionEnabled = YES;
 		[self.view addSubview:v];
@@ -206,7 +283,7 @@
 	self.view.frame = _openedFrame;
 	CGFloat sumHeight = 0.0;
 	for (KSPopoverViewButtonBase *v in self.childs) {
-		v.frame = CGRectMake(v.frame.origin.x,
+		v.frame = CGRectMake(0.0f,
 							 sumHeight,
 							 v.frame.size.width,
 							 v.frame.size.height);
@@ -227,9 +304,7 @@
 	self.view.frame = _normalFrame;
 	// 親ボタンに集合
 	for (KSPopoverViewButtonBase *v in self.childs) {
-		v.frame = CGRectMake(self.button.frame.origin.x,
-							 self.button.frame.origin.y,
-							 v.frame.size.width, v.frame.size.height);
+		[self calculateFrameToHide:v];
 		v.alpha = 0.0f;
 		[v resetSelected];
 	}
@@ -248,9 +323,8 @@
 
 #pragma mark -
 - (NSInteger)addButtonWithTitle:(NSString *)title {
-	KSPopoverViewButtonLabel *label = [[KSPopoverViewButtonLabel alloc]
-									   initWithFrame:CGRectZero];
 	// 子ボタンの追加
+	KSPopoverViewButtonBase *label = [[klass alloc] initWithFrame:CGRectZero];
 	label.text = title;
 	[self.childs addObject:label];
 	[label release];
@@ -258,4 +332,22 @@
 	return [self.childs count] - 1;
 }
 
+- (KSPopoverViewButtonBase *)labelAtIndex:(NSInteger)index {
+	return [self.childs objectAtIndex:index];
+}
+
+- (NSInteger)countOfLabels {
+	return [self.childs count];
+}
+
+#pragma mark -
+#pragma mark For debugging
+- (void)setDebug:(BOOL)yesno {
+	_debug = yesno;
+	if (_debug) {
+		self.view.backgroundColor = [UIColor greenColor];
+	} else {
+		self.view.backgroundColor = [UIColor clearColor];
+	}
+}
 @end

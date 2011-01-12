@@ -2,7 +2,7 @@
 //  KSPopoverViewButtonLabel.m
 //  KSPopoverView
 //
-//  Copyright 2010 Katokichi Software. All rights reserved.
+//  Copyright 2010, 2011 KatokichiSoft. All rights reserved.
 //
 
 #import "KSPopoverViewButtonLabel.h"
@@ -10,6 +10,7 @@
 
 #define MIN_HEIGHT 30.0f
 #define INSET_WIDTH 7.0f
+
 @implementation KSPopoverViewButtonLabel
 
 - (id)initWithFrame:(CGRect)frame {
@@ -52,7 +53,7 @@
 }
 
 - (void)dealloc {
-	NSLog(@"label(%@) is dealloced",self.text);
+	NSLog(@"label(%@) is deallocated",self.text);
     [super dealloc];
 }
 
