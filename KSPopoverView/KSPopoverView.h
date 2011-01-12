@@ -1,5 +1,5 @@
 //
-//  KSPopoverViewController.h
+//  KSPopoverView.h
 //  KSPopoverView
 //
 //  Copyright 2010, 2011 KatokichiSoft. All rights reserved.
@@ -31,9 +31,9 @@ typedef enum {
 	KSPopoverPositionBottomRight,  // Not implemented
 } KSPopoverPosition;
 
-@protocol KSPopoverViewControllerDelegate;
+@protocol KSPopoverViewDelegate;
 
-@interface KSPopoverViewController : UIViewController {
+@interface KSPopoverView : UIView {
 	@private
 	// メニュー内の子要素
 	Class klass;
@@ -49,15 +49,16 @@ typedef enum {
 	KSPopoverViewParentButton *_button;
 	UITouch *_firstTouch;
 	
-	id<KSPopoverViewControllerDelegate> _delegate;
+	id<KSPopoverViewDelegate> _delegate;
 
 	// デバッグ情報の表示
 	BOOL _debug;
 }
 
 @property(nonatomic, retain) KSPopoverViewParentButton *button;
+@property(nonatomic, retain) UITouch *firstTouch;
 @property(retain) NSMutableArray *childs;
-@property(nonatomic, assign) id<KSPopoverViewControllerDelegate> delegate;
+@property(nonatomic, assign) id<KSPopoverViewDelegate> delegate;
 @property(nonatomic, assign, readonly) CGRect frame;
 @property(nonatomic, assign) KSPopoverPosition position;
 @property(nonatomic, assign) BOOL debug;
@@ -66,12 +67,13 @@ typedef enum {
 - (NSInteger)addButtonWithTitle:(NSString *)title;
 - (KSPopoverViewButtonBase *)labelAtIndex:(NSInteger)index;
 - (NSInteger)countOfLabels;
+
 @end
 
 #pragma mark -
-@protocol KSPopoverViewControllerDelegate <NSObject>
+@protocol KSPopoverViewDelegate <NSObject>
 @required
-- (void)popoverViewController:(KSPopoverViewController *)controller
+- (void)popoverView:(KSPopoverView *)view
 		  selectedButtonIndex:(NSInteger)buttonIndex;
 @end
 

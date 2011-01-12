@@ -6,10 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KSPopoverViewController.h"
+#import "KSPopoverView.h"
 
-@interface KSPopoverViewViewController : UIViewController <KSPopoverViewControllerDelegate> {
-	KSPopoverViewController *_menu;
+@interface KSPopoverViewViewController : UIViewController <KSPopoverViewDelegate> {
+	KSPopoverView *_menu;
 }
 
 @end
