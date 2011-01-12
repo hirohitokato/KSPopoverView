@@ -7,6 +7,12 @@
 
 #import "KSPopoverViewButtonBase.h"
 
+@interface KSPopoverViewButtonBase (private)
+// 選択されたときのアニメーション
+- (void)startSelectionAnimation;
+- (void)endSelectionAnimation;
+@end
+
 @implementation KSPopoverViewButtonBase
 @synthesize selected=_selected;
 
@@ -44,7 +50,7 @@
 			case KSPopoverEventTouchesBegan:
 				self.selected = YES;
 				[self setNeedsDisplay];
-				// Touch downイベントの発生
+				// Touch downイベントの発生と画面描画
 				handle = NO;
 				break;
 
@@ -59,8 +65,11 @@
 				
 			case KSPopoverEventTouchesEnded:
 				self.selected = NO;
-				// Touch upイベントの発生
+				// Touch upイベントの発生と画面描画
 				[self setNeedsDisplay];
+				[self performSelector:@selector(startSelectionAnimation)
+						   withObject:nil
+						   afterDelay:0.05f];
 				handle = YES;
 				break;
 				
@@ -107,4 +116,16 @@
 	}
 }
 
+- (void)startSelectionAnimation {
+	self.selected = YES;
+	[self setNeedsDisplay];
+	[self performSelector:@selector(endSelectionAnimation)
+			   withObject:nil
+			   afterDelay:0.2f];
+}
+
+- (void)endSelectionAnimation {
+	self.selected = NO;
+	[self setNeedsDisplay];
+}
 @end

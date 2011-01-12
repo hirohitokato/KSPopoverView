@@ -34,6 +34,7 @@ typedef enum {
 @end
 
 
+// 以下のメソッドはいずれもProtectedメソッドのため、他のクラスから呼ばないこと
 @interface KSPopoverViewButtonBase (local)
 // 各状態で表示させる情報などに利用。使い方は子クラスに任せる
 - (void)setObject:(id)obj forState:(KSPopoverEventType)type;
@@ -41,4 +42,5 @@ typedef enum {
 
 // ヒットテストに使用（デフォルトでframeにマッチしていればOKを返すようにしてある）
 - (BOOL)containsPoint:(CGPoint)point;
+
 @end
