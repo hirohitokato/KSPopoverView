@@ -274,6 +274,7 @@
 	[UIView setAnimationDuration:0.2f];
 	[UIView setAnimationDidStopSelector:@selector(didEndFadeout:finished:context:)];
 	self.frame = _normalFrame;
+	self.button.frame = CGRectMake(0, 0, self.button.frame.size.width, self.button.frame.size.height);
 	// 親ボタンに集合
 	for (KSPopoverViewButtonBase *v in self.childs) {
 		[self calculateFrameToHide:v];
