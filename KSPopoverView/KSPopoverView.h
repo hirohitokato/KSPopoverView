@@ -31,6 +31,9 @@ typedef enum {
 	KSPopoverPositionBottomRight,  // Not implemented
 } KSPopoverPosition;
 
+// デリゲートメソッドが呼ばれたときのinfoパラメータ内のキー
+extern NSString *KSPopoverViewButtonInfoLabelNameKey;   // ラベルの名前
+
 @protocol KSPopoverViewDelegate;
 
 @interface KSPopoverView : UIView {

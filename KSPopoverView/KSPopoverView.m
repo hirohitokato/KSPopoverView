@@ -9,6 +9,8 @@
 
 #define BUTTON_GAP	5.0f	// ボタンの配置間隔
 
+NSString *KSPopoverViewButtonInfoLabelNameKey = @"labelname";
+
 @interface KSPopoverView (private)
 - (void)forwardTouches:(NSSet *)touches withEventType:(KSPopoverEventType)type;
 - (void)hideMenu;
@@ -186,7 +188,7 @@
                         NSDictionary *info = nil;
                         // @FIXME: 抽象クラスなのに具体的なクラスが入ってしまっているので修正（[infoに何か入れろ]と依頼するだけ）
                         if ([child isMemberOfClass:[KSPopoverViewButtonOnOff class]]) {
-                            info = [NSDictionary dictionaryWithObject:child.text forKey:@"label"];
+                            info = [NSDictionary dictionaryWithObject:child.text forKey:KSPopoverViewButtonInfoLabelNameKey];
                         }
 						[self.delegate popoverView:self selectedButtonIndex:index withInfo:info];
 						break;
