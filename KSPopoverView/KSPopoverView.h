@@ -74,6 +74,7 @@ typedef enum {
 @protocol KSPopoverViewDelegate <NSObject>
 @required
 - (void)popoverView:(KSPopoverView *)view
-		  selectedButtonIndex:(NSInteger)buttonIndex;
+selectedButtonIndex:(NSInteger)buttonIndex
+           withInfo:(NSDictionary *)info;
 @end
 

@@ -181,9 +181,14 @@
 			if (handled) {
 				if (self.delegate) {
 					if ([self.delegate respondsToSelector:
-						 @selector(popoverView:selectedButtonIndex:)]) {
-						[self.delegate popoverView:self
-							   selectedButtonIndex:index];
+						 @selector(popoverView:selectedButtonIndex:withInfo:)]) {
+                        // 選択したボタンのイベント発生
+                        NSDictionary *info = nil;
+                        // @FIXME: 抽象クラスなのに具体的なクラスが入ってしまっているので修正（[infoに何か入れろ]と依頼するだけ）
+                        if ([child isMemberOfClass:[KSPopoverViewButtonOnOff class]]) {
+                            info = [NSDictionary dictionaryWithObject:child.text forKey:@"label"];
+                        }
+						[self.delegate popoverView:self selectedButtonIndex:index withInfo:info];
 						break;
 					} else {
 						NSLog(@"delegate object does not implement required methods.");
