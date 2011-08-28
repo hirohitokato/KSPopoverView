@@ -47,6 +47,7 @@ extern NSString *KSPopoverViewButtonInfoLabelNameKey;   // ラベルの名前
 	CGRect _openedFrame;
 	KSPopoverState _state;
 	KSPopoverPosition _position;
+    CGFloat _offset;
 	
 	// ユーザーに見せるボタン相当
 	KSPopoverViewParentButton *_button;
@@ -64,6 +65,9 @@ extern NSString *KSPopoverViewButtonInfoLabelNameKey;   // ラベルの名前
 @property(nonatomic, assign) id<KSPopoverViewDelegate> delegate;
 @property(nonatomic, assign, readonly) CGRect frame;
 @property(nonatomic, assign) KSPopoverPosition position;
+// メニュー全体の縦方向へのオフセット（大きいほどボタン全体が離れる）
+@property(nonatomic, assign) CGFloat offset;
+// デバッグログの表示切り替え
 @property(nonatomic, assign) BOOL debug;
 
 - (id)initWithType:(KSPopoverType)type image:(UIImage *)buttonImage point:(CGPoint)point;
@@ -76,8 +80,7 @@ extern NSString *KSPopoverViewButtonInfoLabelNameKey;   // ラベルの名前
 #pragma mark -
 @protocol KSPopoverViewDelegate <NSObject>
 @required
-- (void)popoverView:(KSPopoverView *)view
-selectedButtonIndex:(NSInteger)buttonIndex
-           withInfo:(NSDictionary *)info;
+// ポップオーバー表示されたボタンのいずれかが選択されたときに呼ばれる
+- (void)popoverView:(KSPopoverView *)view selectedButtonIndex:(NSInteger)buttonIndex withInfo:(NSDictionary *)info;
 @end
 

@@ -17,6 +17,7 @@
 										  point:CGPointMake(50.0f, 340.0f)];
 	_menu.delegate = self;
 	_menu.position = KSPopoverPositionTopCenter;
+    _menu.offset = 50;
 	//_menu.debug = YES;
 	[self.view addSubview:_menu];
 
@@ -57,8 +58,9 @@
 }
 
 #pragma mark -
-- (void)popoverView:(KSPopoverView *)view
-		  selectedButtonIndex:(NSInteger)buttonIndex {
+- (void)popoverView:(KSPopoverView *)view selectedButtonIndex:(NSInteger)buttonIndex
+           withInfo:(NSDictionary *)info {
+    NSLog(@"Pushed %dth button. info:%@", buttonIndex, info);
 	KSPopoverViewButtonBase *button = [view labelAtIndex:buttonIndex];
 	button.text = @"pressed";
 }

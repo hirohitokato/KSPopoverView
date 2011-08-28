@@ -26,6 +26,7 @@ NSString *KSPopoverViewButtonInfoLabelNameKey = @"labelname";
 @synthesize firstTouch=_firstTouch;
 @synthesize childs=_childs;
 @synthesize position=_position;
+@synthesize offset=_offset;
 @synthesize delegate=_delegate;
 @synthesize debug=_debug;
 
@@ -89,6 +90,7 @@ NSString *KSPopoverViewButtonInfoLabelNameKey = @"labelname";
 		maxWidth = (maxWidth>[v preferredSize].width)?maxWidth:[v preferredSize].width;
 		sumHeights += [v preferredSize].height + BUTTON_GAP;
 	}
+    sumHeights += _offset;
 	switch (self.position) {
 		case KSPopoverPositionTopRight:
 			_openedFrame = CGRectMake(_normalFrame.origin.x,
