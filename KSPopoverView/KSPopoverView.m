@@ -47,11 +47,11 @@ NSString *KSPopoverViewButtonInfoLabelNameKey = @"labelname";
 		self.frame = frame;
 		_normalFrame = frame;
 		_openedFrame = CGRectZero;
-		self.button = [[KSPopoverViewParentButton alloc] initWithImage:buttonImage];
+		self.button = [[[KSPopoverViewParentButton alloc] initWithImage:buttonImage] autorelease];
 		self.button.userInteractionEnabled = YES;
 		[self addSubview:self.button];
 
-		self.childs = [[NSMutableArray alloc] init];
+		self.childs = [[[NSMutableArray alloc] init] autorelease];
 		self.debug = NO;
 		
 		switch (type) {
